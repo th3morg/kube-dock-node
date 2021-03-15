@@ -1,0 +1,11 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t th3morg/kube-dock-node -f ./frontend/Dockerfile.dev ./frontend
+
+script:
+  - docker run -e CI=true th3morg/kube-dock-node npm run test -- --coverage
+
+language: generic
